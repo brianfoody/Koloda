@@ -65,6 +65,30 @@ public class DraggableCardView: UIView {
             actionMargin = delegate?.card(cardSwipeThresholdMargin: self) ?? frame.size.width / 2.0
         }
     }
+
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("*** TOUCHES BEGAN ***")
+        for touch in touches {
+           if #available(iOS 9.0, *) {
+               print("Touch force is \(touch.force) of \(touch.maximumPossibleForce), which is \(touch.force/touch.maximumPossibleForce)%")
+           } else {
+                print("NO 3D TOUCH SUPPORT")
+           }
+        }
+        print(touches)
+    }
+    
+    override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("*** TOUCHES MOVED ***")
+        for touch in touches {
+            if #available(iOS 9.0, *) {
+                print("Touch force is \(touch.force) of \(touch.maximumPossibleForce), which is \(touch.force/touch.maximumPossibleForce)%")
+            } else {
+                print("NO 3D TOUCH SUPPORT")
+            }
+        }
+        print(touches)
+    }
     
     deinit {
         removeGestureRecognizer(panGestureRecognizer)
